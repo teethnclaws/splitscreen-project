@@ -1,0 +1,127 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	line-height: 1.6;
+	font-family: Arial, Helvetica, sans-serif;
+	/* completely removed the overflow from alongside the page */
+	overflow: hidden;
+}
+
+/* this wraps around everything */
+#wrapper {
+	position: relative;
+	width: 100%;
+	min-height: 55vw;
+	overflow: hidden;
+}
+
+/* remember we have two layer sections; top and bottom */
+.layer {
+	position: absolute;
+	/* we want to be able to take up the entire width */
+	width: 100vw;
+	min-height: 55vw;
+	/* added after which fixed my bottom image not showing */
+	overflow: hidden;
+}
+
+.layer .content-wrap {
+	position: absolute;
+	width: 100vw;
+	min-height: 55vw;
+}
+
+.layer .content-body {
+	position: absolute;
+	width: 25%;
+	top: 50%; /* pushing it down by 50% */
+	text-align: center;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	color: #FFFFFF;
+}
+
+.layer img {
+	position: absolute;
+	width: 35%;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	/* for both X & Y to put the image in the middle */
+	transform: translate(-50%, -50%);
+}
+
+.layer h1 {
+	font-size: 2em;
+}
+
+.bottom {
+	background: #222222;
+	/* we have to add the z-index to both the bottom and top classes. Whichever has the higher
+	z-index number will be on top */
+	z-index: 1;
+}
+
+.bottom .content-body {
+	right: 5%;
+}
+
+.bottom h1 {
+	color: #FDAB00;
+}
+
+.top {
+	background: #EEEEEE;
+	color: #222222;
+	z-index: 2;
+	width: 50vw;
+}
+
+.top .content-body {
+	left: 5%;
+	color: #222222;
+}
+
+.handle {
+	position: absolute;
+	height: 100%;
+	display: block;
+	background-color: #FDAB00;
+	width: 5px;
+	top: 0;
+	left: 50%;
+	/* sets this bar overtop the lighter background, which is then atop the darker background */
+	z-index: 3;
+}
+
+/* this is where the vertical bar will be altered to a diagonal one 
+https://developer.mozilla.org/en-US/docs/Web/CSS/transform?v=b */
+.skewed .handle {
+	top: 50%;
+	-webkit-transform: rotate(30deg) translateY(-50%);
+	transform: rotate(30deg) translateY(-50%);
+	/* height is increased because it is diagonal */
+	height: 200%;
+	-webkit-transform-origin: top;
+	transform-origin: top;
+}
+
+.skewed .top {
+	-webkit-transform: skew(-30deg);
+	transform: skew(-30deg);
+	margin-left: -1000px;
+	width: calc(50vw + 1000px);
+}
+
+.skewed .top .content-wrap {
+	-webkit-transform: skew(30deg);
+	transform: skew(30deg);
+	margin-left: 1000px;
+}
+
+@media(max-width:768px) {
+	body {
+		font-size: 80%;
+	}
+}
